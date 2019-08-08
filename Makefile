@@ -1,7 +1,16 @@
 
 # Image URL to use all building/pushing image targets
 IMG ?= cloudoperators/event-streams-topic-controller
+GOFILES = $(shell find . -type f -name '*.go' -not -path "./vendor/*")
 
+deps:
+	go get golang.org/x/lint/golint
+	go get -u github.com/apg/patter
+	go get -u github.com/wadey/gocovmerge
+	go get -u github.com/alecthomas/gometalinter
+	gometalinter --install
+	pip install --user PyYAML
+	
 all: test manager
 
 # Run tests
