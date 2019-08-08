@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  creationTimestamp: null
+  name: topic-operator-rolebinding
+  labels:
+    app.kubernetes.io/name: topic-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: topic-operator-manager-role
+subjects:
+- kind: ServiceAccount
+  name: topic-operator
+  namespace: topic-operator

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "/Users/mvaziri/git/go/src/github.com/ibm/cloud-operators"
+		},
+		{
+			"path": "/Users/mvaziri/git/go/src/github.com/ibm/composable"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

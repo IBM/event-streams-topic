@@ -1,0 +1,97 @@
+# Constants used to package the operator for operator hub
+
+operator_name: topic-operator
+channel_name: alpha
+maturity: alpha
+image: cloudoperators/event-streams-topic-controller
+crd:
+    - kind: Topic
+      description: An operator for the life cycle management of Topics on Event Streams for IBM Cloud
+      example: |-
+        {"apiVersion": "ibmcloud.ibm.com/v1alpha1",
+            "kind": "Topic",
+            "metadata": {
+              "name": "mytopic"
+            },
+            "spec": {
+              "apiKey": {
+                "secretKeyRef": {
+                  "name": "binding-messagehub",
+                  "key": "api_key"
+                }
+              },
+              "kafkaAdminUrl": {
+                "secretKeyRef": {
+                  "name": "binding-messagehub",
+                  "key": "kafka_admin_url"
+                }
+              },
+              "topicName": "MyGreatTopic",
+              "numPartitions": "3",
+              "replicationFactor" : "3",
+              "configs" : [{
+                "name": "retentionMs",
+                "value": "2592000000"
+              }]
+            }
+        }
+      resources:
+        - kind: Secret
+          version: v1
+        - kind: ConfigMap
+          version: v1
+        - kind: Topic
+          version: v1alpha1
+        - kind: Binding
+          version: v1alpha1
+        - kind: Service
+          version: v1alpha1 
+      specDescriptors:        
+        - description: TopicName is the displayed Topic name
+          displayName: topicName
+          path: topicName
+          x-descriptors:
+            - 'urn:alm:descriptor:text' 
+        - description: NumPartitions is the number of partitions for the Topic
+          displayName: numPartitions
+          path: numPartitions
+          x-descriptors:
+            - 'urn:alm:descriptor:text' 
+        - description: ReplicationFactor is the replication factor for the Topic
+          displayName: replicationFactor
+          path: replicationFactor
+          x-descriptors:
+            - 'urn:alm:descriptor:text' 
+        - description: Configs is an array of configuration parameters for the Topic
+          displayName: configs
+          path: configs
+          x-descriptors:
+            - 'urn:alm:descriptor:text' 
+        - description: BindingFrom is the binding that contains credentials for the Topic's Event Stream service
+          displayName: bindingFrom
+          path: bindingFrom
+          x-descriptors:
+            - 'urn:alm:descriptor:text' 
+        - description: APIKey is the API key for the Topic's Event Stream service
+          displayName: apiKey
+          path: apiKey
+          x-descriptors:
+            - 'urn:alm:descriptor:text' 
+        - description: KafkaAdminURL is the kafka admin URL for the Topic's Event Stream service
+          displayName: kafkaAdminUrl
+          path: kafkaAdminUrl
+          x-descriptors:
+            - 'urn:alm:descriptor:text'        
+      statusDescriptors:
+        - description: Detailed message on current status
+          displayName: Message
+          path: message
+          x-descriptors:
+            - 'urn:alm:descriptor:text'    
+        - description: Current state for the Topic
+          displayName: State
+          path: state
+          x-descriptors:
+            - 'urn:alm:descriptor:text'    
+
+  
