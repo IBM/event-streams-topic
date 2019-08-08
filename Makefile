@@ -10,7 +10,7 @@ deps:
 	go get -u github.com/alecthomas/gometalinter
 	gometalinter --install
 	pip install --user PyYAML
-	
+
 all: test manager
 
 # Run tests
@@ -64,11 +64,25 @@ docker-push: check-tag
 	echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 	docker push ${IMG}:${TAG}
 
+# Run the operator-sdk scorecard on latest release
+scorecard:
+	hack/operator-scorecard.sh 
 
 # make a release for olm and releases
 release: check-tag
 	python hack/package.py v${TAG}
 
+# Push OLM metadata to private Quay registry
+push-olm: check-tag check-quaytoken check-quayns
+	operator-courier push olm/v${TAG} ${QUAY_NS} event-streams-topic-operator ${TAG} "${QUAY_TOKEN}"
+	@echo Remember to make https://quay.io/application/${QUAY_NS}/event-streams-topic-operator public
+
+.PHONY: lintall
+lintall: fmt lint vet
+
+lint:
+	golint -set_exit_status=true pkg/
+	
 check-tag:
 ifndef TAG
 	$(error TAG is undefined! Please set TAG to the latest release tag, using the format x.y.z e.g. export TAG=0.1.1 )
