@@ -15,14 +15,12 @@ before_install:
   - source ./hack/latest_tag
   - ./tools/travis/k8s-tools.sh
   - if [ ! -z "$BLUEMIX_API_KEY" ]; then ./tools/travis/set-kube-config.sh; fi
-  - if [ ! -z "$BLUEMIX_API_KEY" ]; then ./tools/travis/bx-install.sh; fi
-  - if [ ! -z "$BLUEMIX_API_KEY" ]; then ./tools/travis/bx-setup.sh; fi
+
 
 script:
   - make generate
   - make lintall
   - if [ ! -z "$BLUEMIX_API_KEY" ]; then make test; fi
-  - if [ ! -z "$BLUEMIX_API_KEY" ]; then test/e2e/test.sh; fi
 
 after_success:
   - make push
