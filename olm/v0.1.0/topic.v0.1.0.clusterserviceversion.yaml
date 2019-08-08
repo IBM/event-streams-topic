@@ -8,9 +8,9 @@ metadata:
     categories: Cloud Provider
     certified: 'false'
     containerImage: cloudoperators/event-streams-topic-controller:0.1.0
-    createdAt: '2019-08-08T13:52:51Z'
-    description: Topic is an operator to manage the life cycle of Topic on a managed
-      Event Streams service on IBM Public Cloud
+    createdAt: '2019-08-08T14:27:50Z'
+    description: An operator for the life cycle management of Topics on Event Streams
+      for IBM Cloud
     repository: https://github.com/IBM/event-streams-topic
     support: IBM
   name: topic-operator.v0.1.0
@@ -18,8 +18,8 @@ metadata:
 spec:
   customresourcedefinitions:
     owned:
-    - description: Topic is an operator for life cycle management of Topics on managed
-        Event Streams on IBM Public Cloud
+    - description: An operator for the life cycle management of Topics on Event Streams
+        for IBM Cloud
       displayName: Topic
       kind: Topic
       name: topics.ibmcloud.ibm.com
@@ -85,8 +85,8 @@ spec:
         - urn:alm:descriptor:text
       version: v1alpha1
   description: "Event Streams Topic is an operator to manage the life cycle of Topics\
-    \ on a managed Event Streams service on IBM Public Cloud.\nIt is currently in\
-    \ preview. It will get updated as we release new versions of the [upstream repository](https://github.com/IBM/event-streams-topic).\n\
+    \ on Event Streams service on IBM Cloud.\nIt is currently in preview. It will\
+    \ get updated as we release new versions of the [upstream repository](https://github.com/IBM/event-streams-topic).\n\
     ## Requirements\nThe operator can be installed on any OLM-enabled Kubernetes cluster\
     \ with version >= 1.11. \n## Using the Event Streams Topic Operator\nFor additional\
     \ configuration options, samples and more information on using the operator, consult\

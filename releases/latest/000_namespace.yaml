@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: topic-operator
-  labels:
-    app.kubernetes.io/name: topic-operator

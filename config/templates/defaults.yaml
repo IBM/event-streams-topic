@@ -6,7 +6,7 @@ maturity: alpha
 image: cloudoperators/event-streams-topic-controller
 crd:
     - kind: Topic
-      description: Topic is an operator for life cycle management of Topics on managed Event Streams on IBM Public Cloud
+      description: An operator for the life cycle management of Topics on Event Streams for IBM Cloud
       example: |-
         {"apiVersion": "ibmcloud.ibm.com/v1alpha1",
             "kind": "Topic",
