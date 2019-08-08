@@ -1,6 +1,6 @@
 # event-streams-topic
 
-The event-streams-topic operator supports the life cycle management of Topic on managed EventStreams on IBM Public Cloud.
+The event-streams-topic operator supports the life cycle management of Topics for EventStreams on IBM Cloud.
 
 ## Installation
 
