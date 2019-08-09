@@ -11,30 +11,31 @@ crd:
         {"apiVersion": "ibmcloud.ibm.com/v1alpha1",
             "kind": "Topic",
             "metadata": {
-              "name": "mytopic"
+            "name": "mytopic"
             },
             "spec": {
-              "apiKey": {
-                "secretKeyRef": {
-                  "name": "binding-messagehub",
-                  "key": "api_key"
-                }
-              },
-              "kafkaAdminUrl": {
-                "secretKeyRef": {
-                  "name": "binding-messagehub",
-                  "key": "kafka_admin_url"
-                }
-              },
-              "topicName": "MyGreatTopic",
-              "numPartitions": "3",
-              "replicationFactor" : "3",
-              "configs" : [{
-                "name": "retentionMs",
-                "value": "2592000000"
+            "apiKey": {
+              "secretKeyRef": {
+                "name": "binding-messagehub",
+                "key": "api_key"
+              }
+            },
+            "kafkaAdminUrl": {
+              "secretKeyRef": {
+                "name": "binding-messagehub",
+                "key": "kafkaAdminUrl"
+              }
+            },
+            "topicName": "MyGreatTopic",
+            "numPartitions": "3",
+            "replicationFactor" : "3",
+            "configs": [{
+              "name": "retentionMs",
+              "value": "2592000000"
               }]
             }
         }
+
       resources:
         - kind: Secret
           version: v1
@@ -44,8 +45,6 @@ crd:
           version: v1alpha1
         - kind: Binding
           version: v1alpha1
-        - kind: Service
-          version: v1alpha1 
       specDescriptors:        
         - description: TopicName is the displayed Topic name
           displayName: topicName
@@ -92,6 +91,4 @@ crd:
           displayName: State
           path: state
           x-descriptors:
-            - 'urn:alm:descriptor:text'    
-
-  
+            - 'urn:alm:descriptor:text' 

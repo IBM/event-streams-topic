@@ -21,7 +21,6 @@ spec:
     mediatype: image/png
   description: >
     Event Streams Topic is an operator to manage the life cycle of Topics on Event Streams service on IBM Cloud.
-    
     It is currently in preview. It will get updated
     as we release new versions of the [upstream repository](https://github.com/IBM/event-streams-topic).
 
@@ -33,7 +32,7 @@ spec:
 
     For additional configuration options, samples and more information on using the operator, consult 
     the [Event Streams Topic documentation](https://github.com/IBM/event-streams-topic).
-
+  
   keywords: ['IBM','Cloud']
   version: PLACEHOLDER
   maturity: PLACEHOLDER
@@ -54,8 +53,8 @@ spec:
     matchLabels:
       name: PLACEHOLDER
   links:
-  - name: Event Streams Topic Operator
-    url: https://github.com/ibm/event-streams-topic
+  - name: Event Streams Topic
+    url: https://github.com/ibm/Event Streams Topic
   installModes:
   - type: OwnNamespace
     supported: true

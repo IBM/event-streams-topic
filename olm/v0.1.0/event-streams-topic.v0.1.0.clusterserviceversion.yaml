@@ -3,12 +3,12 @@ kind: ClusterServiceVersion
 metadata:
   annotations:
     alm-examples: |-
-      [{"apiVersion": "ibmcloud.ibm.com/v1alpha1", "kind": "Topic", "metadata": {"name": "mytopic"}, "spec": {"apiKey": {"secretKeyRef": {"name": "binding-messagehub", "key": "api_key"}}, "kafkaAdminUrl": {"secretKeyRef": {"name": "binding-messagehub", "key": "kafka_admin_url"}}, "topicName": "MyGreatTopic", "numPartitions": "3", "replicationFactor": "3", "configs": [{"name": "retentionMs", "value": "2592000000"}]}}]
+      [{"apiVersion": "ibmcloud.ibm.com/v1alpha1", "kind": "Topic", "metadata": {"name": "mytopic"}, "spec": {"apiKey": {"secretKeyRef": {"name": "binding-messagehub", "key": "api_key"}}, "kafkaAdminUrl": {"secretKeyRef": {"name": "binding-messagehub", "key": "kafkaAdminUrl"}}, "topicName": "MyGreatTopic", "numPartitions": "3", "replicationFactor": "3", "configs": [{"name": "retentionMs", "value": "2592000000"}]}}]
     capabilities: Basic Install
     categories: Cloud Provider
     certified: 'false'
     containerImage: cloudoperators/event-streams-topic:0.1.0
-    createdAt: '2019-08-09T12:32:04Z'
+    createdAt: '2019-08-09T14:15:53Z'
     description: An operator for the life cycle management of Topics on Event Streams
       for IBM Cloud
     repository: https://github.com/IBM/event-streams-topic
@@ -31,8 +31,6 @@ spec:
       - kind: Topic
         version: v1alpha1
       - kind: Binding
-        version: v1alpha1
-      - kind: Service
         version: v1alpha1
       specDescriptors:
       - description: TopicName is the displayed Topic name
@@ -85,8 +83,8 @@ spec:
         - urn:alm:descriptor:text
       version: v1alpha1
   description: "Event Streams Topic is an operator to manage the life cycle of Topics\
-    \ on Event Streams service on IBM Cloud.\nIt is currently in preview. It will\
-    \ get updated as we release new versions of the [upstream repository](https://github.com/IBM/event-streams-topic).\n\
+    \ on Event Streams service on IBM Cloud. It is currently in preview. It will get\
+    \ updated as we release new versions of the [upstream repository](https://github.com/IBM/event-streams-topic).\n\
     ## Requirements\nThe operator can be installed on any OLM-enabled Kubernetes cluster\
     \ with version >= 1.11. \n## Using the Event Streams Topic Operator\nFor additional\
     \ configuration options, samples and more information on using the operator, consult\
@@ -227,8 +225,8 @@ spec:
   labels:
     name: event-streams-topic
   links:
-  - name: Event Streams Topic Operator
-    url: https://github.com/ibm/event-streams-topic
+  - name: Event Streams Topic
+    url: https://github.com/ibm/Event Streams Topic
   maintainers:
   - email: mvaziri@us.ibm.com
     name: Mandana Vaziri

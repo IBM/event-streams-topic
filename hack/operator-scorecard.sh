@@ -39,7 +39,7 @@ cp ${SCRIPTS_HOME}/../releases/latest/*_serviceaccount.yaml ${TEST_DEPLOY_DIR}/d
 cp ${SCRIPTS_HOME}/../releases/latest/*_role_binding.yaml ${TEST_DEPLOY_DIR}/deploy/role_binding.yaml
 cp ${SCRIPTS_HOME}/../releases/latest/*_role.yaml ${TEST_DEPLOY_DIR}/deploy/role.yaml
 cp ${SCRIPTS_HOME}/../releases/latest/*_deployment.yaml ${TEST_DEPLOY_DIR}/deploy/operator.yaml
-cp ${SCRIPTS_HOME}/../olm/v${TAG}/topic.v${TAG}.clusterserviceversion.yaml ${TEST_DEPLOY_DIR}/deploy/topic.v${TAG}.clusterserviceversion.yaml
+cp ${SCRIPTS_HOME}/../olm/v${TAG}/event-streams-topic.v${TAG}.clusterserviceversion.yaml ${TEST_DEPLOY_DIR}/deploy/event-streams-topic.v${TAG}.clusterserviceversion.yaml
 
 if [ -z ${TREE_CMD} ]; then
     echo "'tree' command not found, consider installing it."
@@ -63,7 +63,7 @@ fi
 cd $TEST_DEPLOY_DIR
 operator-sdk scorecard \
 --cr-manifest deploy/crds/topic_cr.yaml \
---csv-path deploy/topic.v${TAG}.clusterserviceversion.yaml \
+--csv-path deploy/event-streams-topic.v${TAG}.clusterserviceversion.yaml \
 --namespace ${NS}
 
 # clean up
