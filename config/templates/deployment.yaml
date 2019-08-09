@@ -4,14 +4,14 @@ metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
   labels:
-    app.kubernetes.io/name: topic-operator
-  name: topic-operator
-  namespace: topic-operator
+    app.kubernetes.io/name: event-streams-topic
+  name: event-streams-topic
+  namespace: event-streams-topic
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: topic-operator
+      app: event-streams-topic
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       labels:
-        app: topic-operator
+        app: event-streams-topic
     spec:
       containers:
       - args:
@@ -31,4 +31,4 @@ spec:
         image: PLACEHOLDER
         imagePullPolicy: Always
         name: topic
-      serviceAccountName: topic-operator
+      serviceAccountName: event-streams-topic

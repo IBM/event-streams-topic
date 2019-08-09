@@ -7,13 +7,13 @@ metadata:
     capabilities: Basic Install
     categories: Cloud Provider
     certified: 'false'
-    containerImage: cloudoperators/event-streams-topic-controller:0.1.0
-    createdAt: '2019-08-09T09:58:28Z'
+    containerImage: cloudoperators/event-streams-topic:0.1.0
+    createdAt: '2019-08-09T12:32:04Z'
     description: An operator for the life cycle management of Topics on Event Streams
       for IBM Cloud
     repository: https://github.com/IBM/event-streams-topic
     support: IBM
-  name: topic-operator.v0.1.0
+  name: event-streams-topic.v0.1.0
   namespace: placeholder
 spec:
   customresourcedefinitions:
@@ -112,6 +112,18 @@ spec:
           - patch
           - delete
         - apiGroups:
+          - apps
+          resources:
+          - deployments
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
           - ibmcloud.ibm.com
           resources:
           - topics/status
@@ -171,14 +183,14 @@ spec:
           - update
           - patch
           - delete
-        serviceAccountName: topic-operator
+        serviceAccountName: event-streams-topic
       deployments:
-      - name: topic-operator
+      - name: event-streams-topic
         spec:
           replicas: 1
           selector:
             matchLabels:
-              app: topic-operator
+              app: event-streams-topic
           strategy:
             rollingUpdate:
               maxSurge: 25%
@@ -187,7 +199,7 @@ spec:
           template:
             metadata:
               labels:
-                app: topic-operator
+                app: event-streams-topic
             spec:
               containers:
               - args:
@@ -195,10 +207,10 @@ spec:
                 - -v=5
                 command:
                 - ./manager
-                image: cloudoperators/event-streams-topic-controller:0.1.0
+                image: cloudoperators/event-streams-topic:0.1.0
                 imagePullPolicy: Always
                 name: topic
-              serviceAccountName: topic-operator
+              serviceAccountName: event-streams-topic
     strategy: deployment
   installModes:
   - supported: true
@@ -213,7 +225,7 @@ spec:
   - IBM
   - Cloud
   labels:
-    name: topic-operator
+    name: event-streams-topic
   links:
   - name: Event Streams Topic Operator
     url: https://github.com/ibm/event-streams-topic
@@ -231,5 +243,5 @@ spec:
     name: IBM
   selector:
     matchLabels:
-      name: topic-operator
+      name: event-streams-topic
   version: 0.1.0

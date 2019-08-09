@@ -1,6 +1,6 @@
 
 # Image URL to use all building/pushing image targets
-IMG ?= cloudoperators/event-streams-topic-controller
+IMG ?= cloudoperators/event-streams-topic
 GOFILES = $(shell find . -type f -name '*.go' -not -path "./vendor/*")
 
 deps:

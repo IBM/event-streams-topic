@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: topic-operator
+  name: event-streams-topic
   labels:
-    app.kubernetes.io/name: topic-operator
+    app.kubernetes.io/name: event-streams-topic

@@ -1,9 +1,9 @@
 # Constants used to package the operator for operator hub
 
-operator_name: topic-operator
+operator_name: event-streams-topic
 channel_name: alpha
 maturity: alpha
-image: cloudoperators/event-streams-topic-controller
+image: cloudoperators/event-streams-topic
 crd:
     - kind: Topic
       description: An operator for the life cycle management of Topics on Event Streams for IBM Cloud
