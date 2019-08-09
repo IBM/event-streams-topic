@@ -40,7 +40,7 @@ if args.version == None:
 
 def rename_crd(crdname):
     tk = re.split('[_.]', crdname)
-    return tk[1]+"_operator_"+tk[2]+"_"+tk[3]+".crd.yaml"
+    return "topic-operator-"+tk[2]+".crd.yaml"
 
 def find_deployment(source):
     for filename in os.listdir(source):
@@ -163,7 +163,7 @@ with open(os.path.join(config,"templates","template.package.yaml"), 'r') as stre
     pkg['channels'][0]['name'] = defs['channel_name']
     pkg['packageName'] = defs['operator_name']
 
-    with open(os.path.join(olm,"topic_operator.package.yaml"), "w") as outfile:
+    with open(os.path.join(olm,"topic-operator.package.yaml"), "w") as outfile:
         yaml.dump(pkg, outfile, default_flow_style=False)
  
 # fill in cluster service version from template, deployment and roles
@@ -249,7 +249,7 @@ with open(os.path.join(config,"templates","template.clusterserviceversion.yaml")
     csv['metadata']['annotations']['alm-examples'] = literal(json.dumps(alm_examples))
     
 
-    with open(os.path.join(olm,"topic."+args.version+".clusterserviceversion.yaml"), "w") as outfile:
+    with open(os.path.join(olm,"topic-operator."+args.version+".clusterserviceversion.yaml"), "w") as outfile:
         yaml.dump(csv, outfile, default_flow_style=False)
 
 with open(os.path.join(script_home,"latest_tag"), "w") as f:
