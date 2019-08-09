@@ -54,7 +54,7 @@ spec:
       name: PLACEHOLDER
   links:
   - name: Event Streams Topic
-    url: https://github.com/ibm/Event Streams Topic
+    url: https://github.com/ibm/event-streams-topic
   installModes:
   - type: OwnNamespace
     supported: true

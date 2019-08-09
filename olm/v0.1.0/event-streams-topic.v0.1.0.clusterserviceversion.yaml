@@ -8,7 +8,7 @@ metadata:
     categories: Cloud Provider
     certified: 'false'
     containerImage: cloudoperators/event-streams-topic:0.1.0
-    createdAt: '2019-08-09T14:15:53Z'
+    createdAt: '2019-08-09T14:44:29Z'
     description: An operator for the life cycle management of Topics on Event Streams
       for IBM Cloud
     repository: https://github.com/IBM/event-streams-topic
@@ -226,7 +226,7 @@ spec:
     name: event-streams-topic
   links:
   - name: Event Streams Topic
-    url: https://github.com/ibm/Event Streams Topic
+    url: https://github.com/ibm/event-streams-topic
   maintainers:
   - email: mvaziri@us.ibm.com
     name: Mandana Vaziri
