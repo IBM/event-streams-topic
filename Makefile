@@ -74,15 +74,15 @@ release: check-tag
 
 # Push OLM metadata to private Quay registry
 push-olm: check-tag check-quaytoken check-quayns
-	operator-courier push olm/v${TAG} ${QUAY_NS} event-streams-topic-operator ${TAG} "${QUAY_TOKEN}"
-	@echo Remember to make https://quay.io/application/${QUAY_NS}/event-streams-topic-operator public
+	operator-courier push olm/v${TAG} ${QUAY_NS} topic-operator ${TAG} "${QUAY_TOKEN}"
+	@echo Remember to make https://quay.io/application/${QUAY_NS}/topic-operator public
 
 .PHONY: lintall
 lintall: fmt lint vet
 
 lint:
 	golint -set_exit_status=true pkg/
-	
+
 check-tag:
 ifndef TAG
 	$(error TAG is undefined! Please set TAG to the latest release tag, using the format x.y.z e.g. export TAG=0.1.1 )
