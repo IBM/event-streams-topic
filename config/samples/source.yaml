@@ -1,11 +1,11 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorSource
 metadata:
-  name: topic-operatorss
+  name: event-streams-topic
   namespace: openshift-marketplace
 spec:
   type: appregistry
   endpoint: https://quay.io/cnr
   registryNamespace: vazirim
-  displayName: "New Topic Operator"
+  displayName: "event-streams-topic"
   publisher: "Mandana Vaziri"
