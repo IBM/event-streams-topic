@@ -6,7 +6,7 @@ The event-streams-topic operator supports the life cycle management of Topics fo
 
 To install:
 ```
-git clone git@github.ibm.com:seed/event-streams-topic.git
+git clone git@github.com:IBM/event-streams-topic.git
 ./event-streams-topic/hack/install-topic.sh
 ```
 
