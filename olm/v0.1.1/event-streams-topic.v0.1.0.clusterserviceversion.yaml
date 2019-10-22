@@ -7,13 +7,13 @@ metadata:
     capabilities: Basic Install
     categories: Cloud Provider
     certified: 'false'
-    containerImage: cloudoperators/event-streams-topic:0.1.1
-    createdAt: '2019-10-22T14:24:02Z'
+    containerImage: cloudoperators/event-streams-topic:0.1.0
+    createdAt: '2019-08-09T14:44:29Z'
     description: An operator for the life cycle management of Topics on Event Streams
       for IBM Cloud
     repository: https://github.com/IBM/event-streams-topic
     support: IBM
-  name: event-streams-topic.v0.1.1
+  name: event-streams-topic.v0.1.0
   namespace: placeholder
 spec:
   customresourcedefinitions:
@@ -181,30 +181,6 @@ spec:
           - update
           - patch
           - delete
-        - apiGroups:
-          - ibmcloud.ibm.com
-          resources:
-          - bindings/finalizers
-          verbs:
-          - get
-          - list
-          - watch
-          - create
-          - update
-          - patch
-          - delete
-        - apiGroups:
-          - ibmcloud.ibm.com
-          resources:
-          - bindings/status
-          verbs:
-          - get
-          - list
-          - watch
-          - create
-          - update
-          - patch
-          - delete
         serviceAccountName: event-streams-topic
       deployments:
       - name: event-streams-topic
@@ -229,7 +205,7 @@ spec:
                 - -v=5
                 command:
                 - ./manager
-                image: cloudoperators/event-streams-topic:0.1.1
+                image: cloudoperators/event-streams-topic:0.1.0
                 imagePullPolicy: Always
                 name: topic
               serviceAccountName: event-streams-topic
@@ -263,8 +239,7 @@ spec:
   maturity: alpha
   provider:
     name: IBM
-  replaces: event-streams-topic.v0.1.0
   selector:
     matchLabels:
       name: event-streams-topic
-  version: 0.1.1
+  version: 0.1.0
