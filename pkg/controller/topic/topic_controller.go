@@ -123,6 +123,8 @@ type ReconcileTopic struct {
 // +kubebuilder:rbac:groups=,resources=configmaps,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups=,resources=secrets,verbs=get;list;watch;create;update;patch;delete
 // +kubebuilder:rbac:groups=ibmcloud.ibm.com,resources=bindings,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=ibmcloud.ibm.com,resources=bindings/finalizers,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=ibmcloud.ibm.com,resources=bindings/status,verbs=get;list;watch;create;update;patch;delete
 func (r *ReconcileTopic) Reconcile(request reconcile.Request) (reconcile.Result, error) {
 	ctx := rcontext.New(r.Client, request)
 

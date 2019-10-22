@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   creationTimestamp: null
-  name: manager-role
+  name: event-streams-topic-manager-role
 rules:
 - apiGroups:
   - ibmcloud.ibm.com
@@ -53,7 +53,7 @@ rules:
   - patch
   - delete
 - apiGroups:
-  - ""
+  - ''
   resources:
   - configmaps
   verbs:
@@ -65,7 +65,7 @@ rules:
   - patch
   - delete
 - apiGroups:
-  - ""
+  - ''
   resources:
   - secrets
   verbs:
