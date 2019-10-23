@@ -78,7 +78,7 @@ release-update: check-tag
 
 # Push OLM metadata to private Quay registry
 push-olm: check-tag check-quaytoken check-quayns
-	operator-courier push olm/v${TAG} ${QUAY_NS} topic-operator ${TAG} "${QUAY_TOKEN}"
+	operator-courier push olm/v${TAG} ${QUAY_NS} event-streams-topic ${TAG} "${QUAY_TOKEN}"
 	@echo Remember to make https://quay.io/application/${QUAY_NS}/topic-operator public
 
 .PHONY: lintall

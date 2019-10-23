@@ -5,8 +5,7 @@ The event-streams-topic operator supports the life cycle management of Topics fo
 ## Requirements
 
 The operator can be installed on any Kubernetes cluster with version >= 1.11. Before installing, make sure
-you have installed [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)  
-and it is configured to access your cluster.
+you have installed [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and it is configured to access your cluster.
 
 This operator can be used with IBM Event Streams instances provisioned by the IBM Cloud UI or CLI, or
 by the [IBM Cloud Operator](https://github.com/IBM/cloud-operators).
@@ -86,4 +85,4 @@ spec:
 ```
 
 This automatically extracts the apiKey and kafkaAdminUrl from the secret corresponding to the binding object.
-When created in this way, the Topic's life cycle is bound to that of the managed service. If the Kubernetes object for the service is deleted, then so is the Topic.
+When created this way, the Topic's life cycle is bound to the one of the managed service. If the Kubernetes object for the service is deleted, then so is the Topic.

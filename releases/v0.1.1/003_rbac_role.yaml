@@ -3,6 +3,8 @@ kind: ClusterRole
 metadata:
   creationTimestamp: null
   name: event-streams-topic-manager-role
+  labels:
+    app.kubernetes.io/name: event-streams-topic
 rules:
 - apiGroups:
   - ibmcloud.ibm.com
