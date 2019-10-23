@@ -21,5 +21,8 @@
 kubectl delete --wait crd topics.ibmcloud.ibm.com
 
 # Delete all clusterwide resources for the operator
-kubectl delete clusterrole,clusterrolebinding,serviceaccount,deployment,configmaps -l app.kubernetes.io/name=event-streams-topic
+kubectl delete clusterrole,clusterrolebinding -l app.kubernetes.io/name=event-streams-topic  
+
+# delete all namespaced resources
+kubectl delete ns -l app.kubernetes.io/name=event-streams-topic
 

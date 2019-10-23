@@ -2,22 +2,30 @@
 
 The event-streams-topic operator supports the life cycle management of Topics for EventStreams on IBM Cloud.
 
+## Requirements
+
+The operator can be installed on any Kubernetes cluster with version >= 1.11. Before installing, make sure
+you have installed [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)  
+and it is configured to access your cluster.
+
+This operator can be used with IBM Event Streams instances provisioned by the IBM Cloud UI or CLI, or
+by the [IBM Cloud Operator](https://github.com/IBM/cloud-operators).
+
 ## Installation
 
-To install:
+To install the latest release open a terminal and run:
 ```
-git clone git@github.com:IBM/event-streams-topic.git
-./event-streams-topic/hack/install-topic.sh
+curl -sL https://raw.githubusercontent.com/IBM/event-streams-topic/master/hack/install-topic.sh | bash
 ```
 
 To uninstall:
 ```
-./event-streams-topic/hack/uninstall-topic.sh
+curl -sL https://raw.githubusercontent.com/IBM/event-streams-topic/master/hack/uninstall-topic.sh | bash
 ```
 
 ## Example
 
-Provided a Kubernetes secret, `binding-messagehub`, which contains credentials for the managed EventStreams service (apiKey, and kafkaAdminURL), the following yaml deploys a Topic named `MyGreatTopic` with the configuration settings that are shown.
+Assuming you have created a Kubernetes secret, `binding-messagehub`, which contains credentials for the managed EventStreams service (apiKey, and kafkaAdminURL), the following yaml deploys a Topic named `MyGreatTopic` with the configuration settings that are shown.
 
 ```
 apiVersion: ibmcloud.ibm.com/v1alpha1
@@ -41,7 +49,7 @@ spec:
       value: 2592000000
   ```
   
-The secret containing the credentials may be created in any way. However, and an easy way to obtain it is by using the IBM Cloud Operator (https://github.com/IBM/cloud-operators):
+The secret containing the credentials may be created in any way. However, an easy way to obtain it is by using the [IBM Cloud Operator](https://github.com/IBM/cloud-operators):
   
 ```
 apiVersion: ibmcloud.ibm.com/v1alpha1
