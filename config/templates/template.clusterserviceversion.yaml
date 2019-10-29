@@ -27,8 +27,37 @@ spec:
     ## Requirements
 
     The operator can be installed on any OLM-enabled Kubernetes cluster with version >= 1.11. 
+    Before installing, make sure you have installed [kubectl CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) and it is configured to access your cluster.
+
+    This operator can be used with IBM Event Streams instances provisioned by the IBM Cloud UI or CLI, or
+    by the [IBM Cloud Operator](https://github.com/IBM/cloud-operators).
     
     ## Using the Event Streams Topic Operator
+
+    Assuming you have created a Kubernetes secret, `binding-messagehub`, which contains credentials for the managed EventStreams service (apiKey, and kafkaAdminURL), 
+    the following yaml deploys a Topic named `MyGreatTopic` with the configuration settings that are shown:
+
+        apiVersion: ibmcloud.ibm.com/v1alpha1
+        kind: Topic
+        metadata:
+          name: mytopic
+        spec:
+          apiKey:
+            secretKeyRef:
+              name: binding-messagehub
+              key: apikey
+          kafkaAdminUrl:
+            secretKeyRef:
+              name: binding-messagehub
+              key: kafkaadminurl
+          topicName: MyGreatTopic
+          numPartitions: 3
+          replicationFactor : 3
+          configs :
+            - name: retentionMs
+              value: 2592000000
+  
+
 
     For additional configuration options, samples and more information on using the operator, consult 
     the [Event Streams Topic documentation](https://github.com/IBM/event-streams-topic).

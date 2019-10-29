@@ -2,15 +2,15 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
-    alm-examples: |-
-      [{"apiVersion": "ibmcloud.ibm.com/v1alpha1", "kind": "Topic", "metadata": {"name": "mytopic"}, "spec": {"apiKey": {"secretKeyRef": {"name": "binding-messagehub", "key": "api_key"}}, "kafkaAdminUrl": {"secretKeyRef": {"name": "binding-messagehub", "key": "kafkaAdminUrl"}}, "topicName": "MyGreatTopic", "numPartitions": "3", "replicationFactor": "3", "configs": [{"name": "retentionMs", "value": "2592000000"}]}}]
+    alm-examples: '[{"kind": "Topic", "spec": {"bindingFrom": {"name": "myes-binding"},
+      "topicName": "myTopic"}, "apiVersion": "ibmcloud.ibm.com/v1alpha1", "metadata":
+      {"name": "mytopic"}}]'
     capabilities: Basic Install
     categories: Cloud Provider
     certified: 'false'
     containerImage: cloudoperators/event-streams-topic:0.1.0
-    createdAt: '2019-08-09T14:44:29Z'
-    description: An operator for the life cycle management of Topics on Event Streams
-      for IBM Cloud
+    createdAt: '2019-08-07T11:11:07Z'
+    description: An operator for managing Topics for Event Streams on IBM Cloud
     repository: https://github.com/IBM/event-streams-topic
     support: IBM
   name: event-streams-topic.v0.1.0
@@ -18,8 +18,7 @@ metadata:
 spec:
   customresourcedefinitions:
     owned:
-    - description: An operator for the life cycle management of Topics on Event Streams
-        for IBM Cloud
+    - description: Represents an Event Streams Topic
       displayName: Topic
       kind: Topic
       name: topics.ibmcloud.ibm.com
@@ -28,13 +27,20 @@ spec:
         version: v1
       - kind: ConfigMap
         version: v1
-      - kind: Topic
-        version: v1alpha1
       - kind: Binding
         version: v1alpha1
+      - kind: Service
+        version: v1alpha1
+      - kind: Topic
+        version: v1alpha1
       specDescriptors:
+      - description: Binding object that holds the secret for Event Streams credentials
+        displayName: BindingFrom
+        path: bindingFrom
+        x-descriptors:
+        - urn:alm:descriptor:text
       - description: TopicName is the displayed Topic name
-        displayName: topicName
+        displayName: TopicName
         path: topicName
         x-descriptors:
         - urn:alm:descriptor:text
@@ -44,41 +50,34 @@ spec:
         x-descriptors:
         - urn:alm:descriptor:text
       - description: ReplicationFactor is the replication factor for the Topic
-        displayName: replicationFactor
+        displayName: ReplicationFactor
         path: replicationFactor
         x-descriptors:
         - urn:alm:descriptor:text
       - description: Configs is an array of configuration parameters for the Topic
-        displayName: configs
+        displayName: Configs
         path: configs
         x-descriptors:
         - urn:alm:descriptor:text
-      - description: BindingFrom is the binding that contains credentials for the
-          Topic's Event Stream service
-        displayName: bindingFrom
-        path: bindingFrom
-        x-descriptors:
-        - urn:alm:descriptor:text
       - description: APIKey is the API key for the Topic's Event Stream service
-        displayName: apiKey
+        displayName: ApiKey
         path: apiKey
         x-descriptors:
         - urn:alm:descriptor:text
       - description: KafkaAdminURL is the kafka admin URL for the Topic's Event Stream
-          service
-        displayName: kafkaAdminUrl
+        displayName: KafkaAdminUrl
         path: kafkaAdminUrl
         x-descriptors:
         - urn:alm:descriptor:text
       statusDescriptors:
-      - description: Detailed message on current status
-        displayName: Message
-        path: message
-        x-descriptors:
-        - urn:alm:descriptor:text
       - description: Current state for the Topic
         displayName: State
         path: state
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Detailed message about the current state
+        displayName: Message
+        path: message
         x-descriptors:
         - urn:alm:descriptor:text
       version: v1alpha1
@@ -110,9 +109,9 @@ spec:
           - patch
           - delete
         - apiGroups:
-          - apps
+          - ibmcloud.ibm.com
           resources:
-          - deployments
+          - topics/status
           verbs:
           - get
           - list
@@ -124,7 +123,7 @@ spec:
         - apiGroups:
           - ibmcloud.ibm.com
           resources:
-          - topics/status
+          - /status
           verbs:
           - get
           - list
@@ -146,9 +145,9 @@ spec:
           - patch
           - delete
         - apiGroups:
-          - ''
+          - ibmcloud.ibm.com
           resources:
-          - configmaps
+          - bindings
           verbs:
           - get
           - list
@@ -170,9 +169,9 @@ spec:
           - patch
           - delete
         - apiGroups:
-          - ibmcloud.ibm.com
+          - ''
           resources:
-          - bindings
+          - configmaps
           verbs:
           - get
           - list
@@ -190,9 +189,6 @@ spec:
             matchLabels:
               app: event-streams-topic
           strategy:
-            rollingUpdate:
-              maxSurge: 25%
-              maxUnavailable: 25%
             type: RollingUpdate
           template:
             metadata:
@@ -207,7 +203,7 @@ spec:
                 - ./manager
                 image: cloudoperators/event-streams-topic:0.1.0
                 imagePullPolicy: Always
-                name: topic
+                name: event-streams-topic
               serviceAccountName: event-streams-topic
     strategy: deployment
   installModes:

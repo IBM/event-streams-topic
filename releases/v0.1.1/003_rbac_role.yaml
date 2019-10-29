@@ -2,9 +2,9 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   creationTimestamp: null
-  name: event-streams-topic-manager-role
   labels:
     app.kubernetes.io/name: event-streams-topic
+  name: event-streams-topic-manager-role
 rules:
 - apiGroups:
   - ibmcloud.ibm.com

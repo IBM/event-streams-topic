@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   labels:
-    controller-tools.k8s.io: "1.0"
+    controller-tools.k8s.io: '1.0'
   name: topics.ibmcloud.ibm.com
 spec:
   additionalPrinterColumns:
@@ -67,7 +67,6 @@ spec:
                     type: string
                   value:
                     description: Defaults to null.
-
                   valueFrom:
                     description: Source for the value. Cannot be used if value is
                       not empty.
@@ -113,7 +112,7 @@ spec:
   version: v1alpha1
 status:
   acceptedNames:
-    kind: ""
-    plural: ""
+    kind: ''
+    plural: ''
   conditions: []
   storedVersions: []
